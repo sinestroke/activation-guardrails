@@ -1,0 +1,59 @@
+model_revision: null
+tokenizer_name: null
+tokenizer_revision: null
+require_tokenizer_model_vocab_match: true
+hf_token_env: HF_TOKEN
+local_files_only: false
+model_loader: nnsight
+nnsight_wrap_hf_for_vlm: true
+device_map: auto
+dtype: bfloat16
+trust_remote_code: false
+attn_implementation: null
+
+activation_types: [residual, mlp, attention]
+normalize_activations: true
+activation_norm_eps: 1.0e-6
+include_embedding_layer: false
+probe_region: all
+max_seq_len: 8192
+
+M: 16
+tau_swim: 1.0
+K: 8
+tau_s: 2.0
+lambda_segvar: 0.01
+gamma_ema: 0.1
+streaming_reduction: max
+rmattn_window: 10
+rmattn_hidden: 100
+rmattn_heads: 10
+rmattn_eval_aggregation: rolling
+
+lr: 5.0e-5
+weight_decay: 1.0e-3
+final_lr: 5.0e-6
+lr_scheduler: cosine
+lr_scheduler_t_max: 20
+micro_batch_size: 32
+grad_accum_steps: 4
+length_bucket_batches: false
+epochs: 20
+early_stopping_metric: auroc
+early_stopping_patience: 10
+early_stopping_min_delta: 0.001
+n_seeds: 5
+fused_seed_training: true
+fused_extraction: true
+grad_clip: 1.0
+seed: 0
+
+log_every: 50
+use_wandb: false
+wandb_project: activation-guardrails
+wandb_entity: null
+wandb_mode: online
+log_attn_weight_stats: true
+module_tree_depth: 3
+allow_existing_artifacts: false
+

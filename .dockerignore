@@ -1,0 +1,7 @@
+# Exclude the entire repository from the build context.
+**
+
+# Include only files required to build the dependency image.
+!Dockerfile
+!.dockerignore
+!requirements.txt

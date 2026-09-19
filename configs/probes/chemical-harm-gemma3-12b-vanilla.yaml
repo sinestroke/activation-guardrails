@@ -1,0 +1,69 @@
+base_config: base.yaml
+
+experiment_name: scheduled-chemical-harm-detection
+backbone_name: gemma-3-12b-it-vanilla
+backbone_family: gemma-3-12b-it
+backbone_variant: vanilla
+model_name: google/gemma-3-12b-it
+tpr_fpr: 0.02
+
+artifact_layout:
+  enabled: true
+  output_root: results/probe_training
+  checkpoint_root: checkpoints/probes
+  run_name: rmsnorm-vanilla-v1
+
+wandb_group: chemical-harm-gemma3-12b-vanilla
+wandb_name_prefix: chemical-harm-gemma3-12b-vanilla
+
+eval_splits:
+  - dev
+  - internal_eval
+  - eval_ood_persuasion
+  - eval_ood_persona
+  - eval_ood_chemical
+  - internal_eval_bn
+  - internal_eval_hi
+  - internal_eval_everyday
+  - eval_ood_harmbench
+  - eval_ood_chemistry_gpqa
+  - eval_ood_xstest
+threshold_calibration_split: internal_eval
+
+data:
+  format: labelled_text
+  files:
+    train:
+      - data/scheduled-chemical-harm-detection/train/train_matched_pairs.jsonl
+      - data/scheduled-chemical-harm-detection/train/train_unmatched_harmful_prompts.jsonl
+      - data/scheduled-chemical-harm-detection/train/train_wildguardmix_benign_500.jsonl
+      - data/scheduled-chemical-harm-detection/train/train_mmlu_benign_250.jsonl
+    dev:
+      - data/scheduled-chemical-harm-detection/dev/dev_matched_pairs.jsonl
+      - data/scheduled-chemical-harm-detection/dev/dev_mmlu_benign_50.jsonl
+      - data/scheduled-chemical-harm-detection/dev/dev_wildguardmix_benign_100.jsonl
+    internal_eval: data/scheduled-chemical-harm-detection/evals/internal_eval.jsonl
+    eval_ood_persuasion: data/scheduled-chemical-harm-detection/evals/eval_ood_persuasion.jsonl
+    eval_ood_persona: data/scheduled-chemical-harm-detection/evals/eval_ood_persona.jsonl
+    eval_ood_chemical: data/scheduled-chemical-harm-detection/evals/eval_ood_chemical.jsonl
+    internal_eval_bn: data/scheduled-chemical-harm-detection/evals/bengali/internal_eval.jsonl
+    internal_eval_hi: data/scheduled-chemical-harm-detection/evals/hindi/internal_eval.jsonl
+    internal_eval_everyday: data/scheduled-chemical-harm-detection/evals/everyday_chemical_generalization/internal_eval.jsonl
+    eval_ood_harmbench: data/scheduled-chemical-harm-detection/evals/eval_ood_harmbench.jsonl
+    eval_ood_chemistry_gpqa: data/scheduled-chemical-harm-detection/evals/eval_ood_chemistry_gpqa.jsonl
+    eval_ood_xstest: data/scheduled-chemical-harm-detection/evals/eval_ood_xstest.jsonl
+  id_field: ids
+  input_field: inputs
+  label_field: labels
+  label_mapping:
+    not_harmful: 0
+    harmful: 1
+    "0": 0
+    "1": 1
+  prefer_stored_token_ids: false
+  chat_template:
+    mode: auto
+    role_policy: compatible
+    add_generation_prompt: false
+  print_rows: 2
+

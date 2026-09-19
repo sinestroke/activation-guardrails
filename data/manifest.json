@@ -1,0 +1,51 @@
+{
+  "schema_version": "activation_guardrails_data_manifest_v1",
+  "datasets": {
+    "high-stakes": {
+      "repo_id": "Arrrlex/models-under-pressure",
+      "revision": "940d830f639617752f54fdf2bca0da7e0d856a9e",
+      "local_dir": "data/high-stakes",
+      "requires_token": false,
+      "required_files": [
+        "training/train.jsonl",
+        "training/test.jsonl",
+        "anthropic_hh_balanced/validation.jsonl",
+        "anthropic_hh_balanced/test.jsonl",
+        "aya_redteaming_balanced/test.jsonl",
+        "mental_health_balanced/test.jsonl",
+        "mt_balanced/validation.jsonl",
+        "mt_balanced/test.jsonl",
+        "mts_balanced/validation.jsonl",
+        "mts_balanced/test.jsonl",
+        "toolace_balanced/validation.jsonl",
+        "toolace_balanced/test.jsonl"
+      ]
+    },
+    "chemical-harm": {
+      "repo_id": "Qiyuan-Sine-F/scheduled-chemical-harm-detection",
+      "revision": "4a99aa766437139b4565f8741266f0ede58638ca",
+      "local_dir": "data/scheduled-chemical-harm-detection",
+      "requires_token": true,
+      "required_files": [
+        "train/train_matched_pairs.jsonl",
+        "train/train_unmatched_harmful_prompts.jsonl",
+        "train/train_wildguardmix_benign_500.jsonl",
+        "train/train_mmlu_benign_250.jsonl",
+        "dev/dev_matched_pairs.jsonl",
+        "dev/dev_mmlu_benign_50.jsonl",
+        "dev/dev_wildguardmix_benign_100.jsonl",
+        "evals/internal_eval.jsonl",
+        "evals/eval_ood_chemical.jsonl",
+        "evals/eval_ood_persona.jsonl",
+        "evals/eval_ood_persuasion.jsonl",
+        "evals/bengali/internal_eval.jsonl",
+        "evals/hindi/internal_eval.jsonl",
+        "evals/everyday_chemical_generalization/internal_eval.jsonl",
+        "evals/eval_ood_harmbench.jsonl",
+        "evals/eval_ood_chemistry_gpqa.jsonl",
+        "evals/eval_ood_xstest.jsonl"
+      ]
+    }
+  }
+}
+

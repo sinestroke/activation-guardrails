@@ -1,0 +1,37 @@
+model_revision: null
+hf_token_env: HF_TOKEN
+local_files_only: false
+device_map: auto
+dtype: bfloat16
+trust_remote_code: false
+attn_implementation: null
+
+classifier_role: guard_classifier
+max_seq_len: 8192
+micro_batch_size: 2
+eval_micro_batch_size: 4
+grad_accum_steps: 32
+epochs: 1
+lr: 2.0e-4
+final_lr: 0.0
+weight_decay: 0.0
+lr_scheduler: cosine
+grad_clip: 1.0
+gradient_checkpointing: true
+
+seed: 0
+n_seeds: 5
+log_every: 10
+use_wandb: false
+wandb_project: activation-guardrail-classifiers
+wandb_entity: null
+wandb_mode: online
+
+lora:
+  r: 32
+  alpha: 16
+  dropout: 0.1
+  target_modules: all_linear
+  bias: none
+  task_type: null
+

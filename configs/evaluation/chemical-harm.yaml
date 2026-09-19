@@ -1,0 +1,65 @@
+base_config: ../probes/chemical-harm-gemma3-12b-vanilla.yaml
+
+evaluation_name: scheduled-chemical-harm-vanilla
+target_backbone_name: gemma-3-12b-it-vanilla
+probe_checkpoint_backbone_name: gemma-3-12b-it-vanilla
+fused_extraction: true
+
+evaluation:
+  default_profile: test
+  output_dir: results/eval/scheduled-chemical-harm-detection/vanilla-v1
+  provenance:
+    require_checkpoint_provenance: true
+  dataset:
+    schema: labelled_text
+    splits:
+      - internal_eval
+      - eval_ood_chemical
+      - eval_ood_persona
+      - eval_ood_persuasion
+      - internal_eval_bn
+      - internal_eval_hi
+      - internal_eval_everyday
+      - eval_ood_harmbench
+      - eval_ood_chemistry_gpqa
+      - eval_ood_xstest
+    metric_aggregates:
+      chemical_distribution_macro:
+        reduction: unweighted_mean
+        require_all_splits: true
+        splits:
+          - internal_eval
+          - eval_ood_chemical
+          - eval_ood_persona
+          - eval_ood_persuasion
+      external_benchmark_macro:
+        reduction: unweighted_mean
+        require_all_splits: true
+        splits:
+          - eval_ood_harmbench
+          - eval_ood_chemistry_gpqa
+          - eval_ood_xstest
+  scorers:
+    probes:
+      enabled: true
+      checkpoint_dir: checkpoints/probes/scheduled-chemical-harm-detection/gemma-3-12b-it/vanilla/rmsnorm-vanilla-v1
+      activation_sites: [residual, mlp, attention]
+    classifier:
+      enabled: true
+      checkpoint_dir: checkpoints/classifiers/scheduled-chemical-harm-detection/llama-3.2-1b-instruct/v1
+  predictions:
+    enabled: true
+    filename: predictions.csv
+  plots:
+    enabled: true
+    views: [per_split_overview, activation_comparison, best_activation_overall]
+  profiles:
+    test: {}
+    validation:
+      output_dir: results/validation/scheduled-chemical-harm-detection/vanilla-v1
+      dataset:
+        splits: [internal_eval]
+        metric_aggregates: null
+      plots:
+        splits: [internal_eval]
+

@@ -1,0 +1,59 @@
+# Docker/Kubernetes runtime for this repo.
+# Target: Python 3.12.3, PyTorch 2.11.0+cu128, CUDA 12.8.
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# PyTorch CUDA 12.8 stack.
+torch==2.11.0+cu128
+torchvision==0.26.0+cu128
+torchaudio==2.11.0+cu128
+
+# Core Heretic / Hugging Face / activation-extraction workflow.
+heretic-llm==1.4.0
+lm-eval[hf]==0.4.12
+immutabledict==4.3.1
+py-cpuinfo==9.0.0
+tomli-w==1.2.0
+transformers[kernels]==5.14.1
+tokenizers==0.22.2
+kernels==0.15.2
+nnsight==0.7.0
+accelerate==1.14.0
+peft==0.19.1
+datasets==4.8.5
+huggingface-hub==1.24.0
+hf-transfer==0.1.9
+safetensors==0.8.0
+sentencepiece==0.2.2
+evaluate==0.4.6
+
+# Optional generation and quantization paths used by generate_gemma_exchanges.py.
+# The script's default backend is Transformers. For backend=vllm, use a vLLM
+# base image or separately validate vllm>=0.22.0 on the target cluster; the
+# available CPython 3.12 wheels pull CUDA 13 Cutlass extras.
+# vllm>=0.22.0
+bitsandbytes==0.49.2
+
+# Data preparation, metrics, and keyword-analysis scripts.
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==25.0.0
+scikit-learn==1.9.0
+scipy==1.18.0
+nltk==3.10.0
+tqdm==4.69.0
+ftfy==6.3.1
+regex==2026.7.19
+langdetect==1.0.9
+chardet==5.2.0
+PyYAML==6.0.3
+pypdf==6.14.2
+
+# Optimization, metadata, APIs, CLIs, and logging.
+optuna==4.9.0
+psutil==7.2.2
+pydantic-settings==2.14.2
+questionary==2.1.1
+rich==14.3.4
+openai==2.46.0
+wandb==0.28.1
+tensorboard==2.21.0

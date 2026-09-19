@@ -1,0 +1,116 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+wandb/
+runs/
+run/**
+!run/
+!run/.gitkeep
+!run/README.md
+tensorboard/
+lightning_logs/
+
+# Environment variables / secrets
+.env
+.env.*
+*.env
+.envrc
+!.env.example
+!.env.template
+
+# Hugging Face / auth / tokens
+.huggingface/
+.hf_token
+hf_token*
+*_token.txt
+*.token
+secrets/
+credentials/
+
+# Model checkpoints and large artifacts
+checkpoints/
+outputs/
+models/
+artifacts/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.onnx
+*.gguf
+
+# Training outputs / generated data
+generated/
+samples/
+eval_outputs/
+
+# Datasets / cache
+datasets/
+data/high-stakes/
+data/scheduled-chemical-harm-detection/
+data/raw/
+data/interim/
+data/processed/
+data/external/
+data/cache/
+data/**/*.arrow
+data/**/*.csv
+data/**/*.parquet
+data/**/*.pkl
+data/**/*.tsv
+data/**/*.npy
+data/**/*.npz
+.cache/
+hf_cache/
+transformers_cache/
+huggingface_cache/
+
+# Slurm / cluster outputs
+slurm-*.out
+slurm-*.err
+*.out
+*.err
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+
+data/annotations/
+results/

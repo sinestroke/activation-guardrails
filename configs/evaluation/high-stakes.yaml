@@ -1,0 +1,56 @@
+base_config: ../probes/high-stakes-gemma3-12b-vanilla.yaml
+
+evaluation_name: high-stakes-vanilla
+target_backbone_name: gemma-3-12b-it-vanilla
+probe_checkpoint_backbone_name: gemma-3-12b-it-vanilla
+
+evaluation:
+  default_profile: test
+  output_dir: results/eval/high-stakes-detection/vanilla-v1
+  provenance:
+    require_checkpoint_provenance: true
+  dataset:
+    schema: labelled_text
+    splits:
+      - test_anthropic_hh_balanced
+      - test_aya_redteaming_balanced
+      - test_mental_health_balanced
+      - test_mt_balanced
+      - test_mts_balanced
+      - test_toolace_balanced
+    metric_aggregates:
+      test_standard_macro:
+        reduction: unweighted_mean
+        require_all_splits: true
+        splits:
+          - test_anthropic_hh_balanced
+          - test_aya_redteaming_balanced
+          - test_mental_health_balanced
+          - test_mt_balanced
+          - test_mts_balanced
+          - test_toolace_balanced
+  scorers:
+    probes:
+      enabled: true
+      checkpoint_dir: checkpoints/probes/high-stakes-detection/gemma-3-12b-it/vanilla/rmsnorm-vanilla-v1
+      activation_sites: [residual, mlp, attention]
+    classifier:
+      enabled: true
+      checkpoint_dir: checkpoints/classifiers/high-stakes-detection/llama-3.2-1b-instruct/v1
+  predictions:
+    enabled: true
+    filename: predictions.csv
+  plots:
+    enabled: true
+    splits: [test_standard_macro]
+    views: [per_split_overview, activation_comparison, best_activation_overall]
+  profiles:
+    test: {}
+    validation:
+      output_dir: results/validation/high-stakes-detection/vanilla-v1
+      dataset:
+        splits: [dev]
+        metric_aggregates: null
+      plots:
+        splits: [dev]
+
