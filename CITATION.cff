@@ -3,7 +3,7 @@ message: "If you use this software, please cite the repository and the associate
 title: "Activation Guardrails"
 type: software
 authors:
-  - family-names: "Sine"
+  - family-names: "Feng"
     given-names: "Qiyuan"
 version: 0.1.0
 license: MIT

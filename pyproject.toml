@@ -9,7 +9,7 @@ description = "Training and evaluation for activation probes and LoRA safety cla
 readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
-authors = [{name = "Qiyuan Sine"}]
+authors = [{name = "Qiyuan Feng"}]
 dependencies = []
 
 [project.optional-dependencies]
